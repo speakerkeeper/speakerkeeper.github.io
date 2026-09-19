@@ -24,7 +24,7 @@
   --shadow-lg:   0 8px 24px rgba(11, 14, 20, .08), 0 32px 64px rgba(11, 14, 20, .10);
   --radius:      14px;
   --radius-lg:   22px;
-  --maxw:        1120px;
+  --maxw:        1440px;
   --gutter:      24px;
 }
 
@@ -357,6 +357,18 @@ img { max-width: 100%; display: block; }
 }
 .shot.is-on { opacity: 1; visibility: visible; }
 
+/* Each slide is a button: the whole shot opens full size. Inactive slides are
+   visibility:hidden, which takes their button out of the tab order too. */
+.shot__btn {
+  display: block;
+  width: 100%; height: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+}
+.shot__btn:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+
 .shot__img { width: 100%; height: 100%; object-fit: contain; display: block; }
 .shot__img--dark { display: none; }
 
@@ -453,14 +465,26 @@ img { max-width: 100%; display: block; }
 @media (max-width: 860px) { .steps { grid-template-columns: 1fr; } }
 
 .step { padding-top: 22px; border-top: 2px solid var(--line); }
-.step:first-child { border-top-color: var(--accent); }
 .step h3 { font-size: 17px; letter-spacing: -0.02em; margin-bottom: 8px; }
 .step p { color: var(--ink-2); font-size: 15.5px; }
 .step__k {
   font-size: 12px; font-weight: 700; color: var(--ink-3);
   letter-spacing: .08em; display: block; margin-bottom: 10px;
 }
-.step:first-child .step__k { color: var(--accent); }
+
+/* The rules above each step deepen from left to right, so the row reads as one
+   bar filling up and the strongest colour lands on the step that is the whole
+   point. Colouring only the first step said the opposite: that step one was
+   where you are now and the rest were still to come. */
+@supports (color: color-mix(in srgb, red 50%, blue)) {
+  .step:nth-child(1) { border-top-color: color-mix(in srgb, var(--accent) 28%, var(--line)); }
+  .step:nth-child(2) { border-top-color: color-mix(in srgb, var(--accent) 60%, var(--line)); }
+  .step:nth-child(3) { border-top-color: var(--accent); }
+
+  .step:nth-child(1) .step__k { color: color-mix(in srgb, var(--accent) 45%, var(--ink-3)); }
+  .step:nth-child(2) .step__k { color: color-mix(in srgb, var(--accent) 72%, var(--ink-3)); }
+  .step:nth-child(3) .step__k { color: var(--accent); }
+}
 
 /* ----------------------------------------------------------- features ---- */
 
@@ -547,3 +571,57 @@ img { max-width: 100%; display: block; }
 .footer a { color: var(--ink-2); text-decoration: none; font-size: 14.5px; }
 .footer a:hover { color: var(--accent); }
 .footer__copy { font-size: 14px; color: var(--ink-3); }
+
+/* ------------------------------------------------------------- lightbox --
+   Full-size view of a screenshot. Opened from a slide, closed by Escape, the
+   backdrop, or the button; arrow keys still move between shots while it is up. */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  place-items: center;
+  gap: 16px;
+  padding: clamp(16px, 4vw, 48px);
+  background: rgba(3, 6, 12, .82);
+  backdrop-filter: blur(6px);
+}
+.lightbox[hidden] { display: none; }
+
+.lightbox__img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+}
+
+.lightbox__cap {
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  text-align: center;
+  opacity: .92;
+}
+
+.lightbox__close {
+  position: absolute;
+  top: clamp(12px, 2.5vw, 24px);
+  right: clamp(12px, 2.5vw, 24px);
+  display: grid;
+  place-items: center;
+  width: 40px; height: 40px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, .22);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, .08);
+  color: #fff;
+  cursor: pointer;
+}
+.lightbox__close:hover { background: rgba(255, 255, 255, .16); }
+.lightbox__close svg { width: 18px; height: 18px; }
+.lightbox__close:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+
+/* Stops the page behind from scrolling while the lightbox is up. */
+body.is-locked { overflow: hidden; }

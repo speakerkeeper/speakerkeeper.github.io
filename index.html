@@ -50,7 +50,7 @@
     </a>
     <div class="nav__links">
       <a href="#problem">The problem</a>
-      <a href="#how">How it works</a>
+      <a href="#how">What changes</a>
       <a href="#features">Features</a>
       <a href="#faq">FAQ</a>
       <a href="https://github.com/kevinabouhanna/speaker-keeper">GitHub</a>
@@ -73,9 +73,9 @@
       <h1>Your Bluetooth speaker <br>keeps falling asleep. <br><em>This fixes that.</em></h1>
 
       <p class="hero__sub">
-        Speaker Keeper quietly plays silence to your speaker, so it always thinks
-        something is playing and never nods off. You hear nothing. Your speaker just
-        stays awake.
+        Use it as your everyday PC speaker. Press play and the sound is already
+        there, in full, from the first note. Nothing to set up, nothing to remember,
+        nothing to walk over and switch back on.
       </p>
 
       <div class="hero__cta">
@@ -116,20 +116,28 @@
       <div class="shots" id="shots" aria-roledescription="carousel" aria-label="Speaker Keeper screenshots">
         <div class="shots__stage">
           <figure class="shot is-on" data-cap="One click opens the panel">
-            <img class="shot__img shot__img--light" src="assets/shots/panel-light.png" alt="The Speaker Keeper panel: the connected speaker, a switch to keep it awake, and its battery.">
-            <img class="shot__img shot__img--dark" src="assets/shots/panel-dark.png" alt="" aria-hidden="true">
+            <button class="shot__btn" type="button" aria-label="View full size: One click opens the panel">
+              <img class="shot__img shot__img--light" src="assets/shots/panel-light.png" alt="The Speaker Keeper panel: the connected speaker, a switch to keep it awake, and its battery.">
+              <img class="shot__img shot__img--dark" src="assets/shots/panel-dark.png" alt="" aria-hidden="true">
+            </button>
           </figure>
           <figure class="shot" data-cap="Choose which speakers to keep awake">
-            <img class="shot__img shot__img--light" src="assets/shots/speakers-light.png" alt="The Speakers page, listing the Bluetooth speakers Speaker Keeper knows about, each with its own switch." loading="lazy">
-            <img class="shot__img shot__img--dark" src="assets/shots/speakers-dark.png" alt="" aria-hidden="true" loading="lazy">
+            <button class="shot__btn" type="button" aria-label="View full size: Choose which speakers to keep awake">
+              <img class="shot__img shot__img--light" src="assets/shots/speakers-light.png" alt="The Speakers page, listing the Bluetooth speakers Speaker Keeper knows about, each with its own switch." loading="lazy">
+              <img class="shot__img shot__img--dark" src="assets/shots/speakers-dark.png" alt="" aria-hidden="true" loading="lazy">
+            </button>
           </figure>
           <figure class="shot" data-cap="Battery warnings, startup, updates">
-            <img class="shot__img shot__img--light" src="assets/shots/general-light.png" alt="The General page: start with Windows, warn me when the battery is low, and install updates automatically." loading="lazy">
-            <img class="shot__img shot__img--dark" src="assets/shots/general-dark.png" alt="" aria-hidden="true" loading="lazy">
+            <button class="shot__btn" type="button" aria-label="View full size: Battery warnings, startup, updates">
+              <img class="shot__img shot__img--light" src="assets/shots/general-light.png" alt="The General page: start with Windows, warn me when the battery is low, and install updates automatically." loading="lazy">
+              <img class="shot__img shot__img--dark" src="assets/shots/general-dark.png" alt="" aria-hidden="true" loading="lazy">
+            </button>
           </figure>
           <figure class="shot" data-cap="A live log of everything it does">
-            <img class="shot__img shot__img--light" src="assets/shots/log-light.png" alt="The activity log, showing timestamped lines for every stream start, device change and battery reading." loading="lazy">
-            <img class="shot__img shot__img--dark" src="assets/shots/log-dark.png" alt="" aria-hidden="true" loading="lazy">
+            <button class="shot__btn" type="button" aria-label="View full size: A live log of everything it does">
+              <img class="shot__img shot__img--light" src="assets/shots/log-light.png" alt="The activity log, showing timestamped lines for every stream start, device change and battery reading." loading="lazy">
+              <img class="shot__img shot__img--dark" src="assets/shots/log-dark.png" alt="" aria-hidden="true" loading="lazy">
+            </button>
           </figure>
         </div>
 
@@ -193,30 +201,29 @@
 <section class="section" id="how">
   <div class="wrap">
     <div class="section-head">
-      <span class="eyebrow">How it works</span>
-      <h2>It plays nothing, on purpose.</h2>
+      <span class="eyebrow">What changes</span>
+      <h2>Your speaker starts behaving like it's wired.</h2>
       <p>
-        Not a faint hum, not an inaudible tone, but true digital silence, where every
-        sample is a zero. Your volume slider makes no difference, because there is no
-        sound to make louder.
+        Same speaker, same Bluetooth, none of the waiting. You stop thinking about it
+        entirely, which is the whole idea.
       </p>
     </div>
 
     <div class="steps">
       <div class="step">
         <span class="step__k">STEP 01</span>
-        <h3>It finds your speaker</h3>
-        <p>Speaker Keeper watches your default audio output and follows along when you switch devices.</p>
+        <h3>Install it once</h3>
+        <p>One small file, and about ten seconds. It starts with Windows from then on.</p>
       </div>
       <div class="step">
         <span class="step__k">STEP 02</span>
-        <h3>It streams silence</h3>
-        <p>A silent audio stream keeps the audio path busy, so the speaker believes something is playing.</p>
+        <h3>Forget it's there</h3>
+        <p>No account, no settings to tune, nothing asking for your attention. It sits in the tray and gets on with it.</p>
       </div>
       <div class="step">
         <span class="step__k">STEP 03</span>
-        <h3>Your speaker stays on</h3>
-        <p>No idle timeout, no wake-up delay, no reconnecting. It behaves like it's simply always on.</p>
+        <h3>Press play. It's already on.</h3>
+        <p>Every note, every notification, every video. Nothing clipped, nothing missed, no waiting for it to wake up.</p>
       </div>
     </div>
   </div>
@@ -236,8 +243,8 @@
         <div class="feature__icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5Z"/><path d="m22 9-6 6"/><path d="m16 9 6 6"/></svg>
         </div>
-        <h3>Truly silent</h3>
-        <p>Digital silence, not a faint hum or a tone. Nothing comes out of the speaker.</p>
+        <h3>You hear nothing</h3>
+        <p>No hum, no hiss, no tone. The speaker is simply on and waiting for you.</p>
       </article>
 
       <article class="feature">
@@ -245,7 +252,7 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/><rect x="12" y="12.5" width="7" height="4" rx="2"/><circle cx="17" cy="14.5" r="1"/></svg>
         </div>
         <h3>One click shows everything</h3>
-        <p>Click the tray icon for a panel with your speaker, whether it's being kept awake and its battery. It warns you before the battery runs out.</p>
+        <p>Your speaker, its battery and an off switch, all in one small panel. It tells you before the battery runs low.</p>
       </article>
 
       <article class="feature">
@@ -253,15 +260,15 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 14v-3a9 9 0 0 1 18 0v3"/><path d="M21 16a2 2 0 0 1-2 2h-1v-6h1a2 2 0 0 1 2 2Z"/><path d="M3 16a2 2 0 0 0 2 2h1v-6H5a2 2 0 0 0-2 2Z"/></svg>
         </div>
         <h3>Leaves earbuds alone</h3>
-        <p>Only works on Bluetooth speakers. It won't hold your earbuds awake and drain them.</p>
+        <p>Speakers only. Your earbuds still power themselves off when you put them away, exactly as they should.</p>
       </article>
 
       <article class="feature">
         <div class="feature__icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/><path d="M6.61 6.61A13.53 13.53 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/><path d="m2 2 20 20"/></svg>
         </div>
-        <h3>Windows never sees it</h3>
-        <p>No card in the media flyout, no row in the volume mixer, no hijacked media keys.</p>
+        <h3>Stays out of your way</h3>
+        <p>Your volume controls and the play and skip keys carry on exactly as before. Nothing extra appears anywhere.</p>
       </article>
 
       <article class="feature">
@@ -269,7 +276,7 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 3 4 4-4 4"/><path d="M20 7H4"/><path d="m8 21-4-4 4-4"/><path d="M4 17h16"/></svg>
         </div>
         <h3>Follows your speaker</h3>
-        <p>Switch audio output and it comes along automatically. Nothing to reconfigure.</p>
+        <p>Switch to another speaker and it comes along. Switch to your monitor and it steps aside.</p>
       </article>
 
       <article class="feature">
@@ -277,7 +284,7 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 7v6c0 4.4 3.4 8.5 8 9 4.6-.5 8-4.6 8-9V7Z"/><path d="m9 12 2 2 4-4"/></svg>
         </div>
         <h3>Tiny and private</h3>
-        <p>One small app that matches your Windows theme. No account, no background service, no telemetry.</p>
+        <p>One small app that matches your Windows theme. No account, no sign-up, and nothing about you leaves your PC.</p>
       </article>
     </div>
   </div>
@@ -294,37 +301,37 @@
     <div class="faq">
       <div class="faq__item">
         <button class="faq__q" type="button" aria-expanded="false">Will I hear anything?<i class="faq__sign"></i></button>
-        <div class="faq__a"><p>No. It's true digital silence: every sample is a zero. Your volume slider makes no difference because there's no sound to make louder.</p></div>
+        <div class="faq__a"><p>Nothing at all. No hum, no hiss, no faint tone. Turn your volume up and there is still nothing to hear until you play something.</p></div>
       </div>
 
       <div class="faq__item">
-        <button class="faq__q" type="button" aria-expanded="false">Will this drain my speaker's battery?<i class="faq__sign"></i></button>
-        <div class="faq__a"><p>Your speaker stays on instead of sleeping, so yes, it uses power the way it does when you're actually listening. That's the trade. Speaker Keeper warns you when the battery gets low, and you can quit it any time.</p></div>
+        <button class="faq__q" type="button" aria-expanded="false">What's the best setup for everyday use?<i class="faq__sign"></i></button>
+        <div class="faq__a"><p>Leave your speaker plugged in. Speaker Keeper is built for the speaker that lives on your desk, and a desk speaker on its charger is simply always ready — that's the setup it's happiest in.</p><p>Away from a charger it works just as well, and keeps an eye on the battery for you: it stays awake rather than asleep, so it uses power the way it does while you're listening, and it tells you in good time when it's worth plugging in.</p></div>
       </div>
 
       <div class="faq__item">
-        <button class="faq__q" type="button" aria-expanded="false">Will it mess with my music controls?<i class="faq__sign"></i></button>
-        <div class="faq__a"><p>No. Your keyboard's play/pause and skip buttons keep controlling your actual music apps.</p></div>
+        <button class="faq__q" type="button" aria-expanded="false">Do my play and skip keys still work?<i class="faq__sign"></i></button>
+        <div class="faq__a"><p>Exactly as before. Your keyboard keeps controlling Spotify, YouTube and everything else, and Speaker Keeper never appears among them.</p></div>
       </div>
 
       <div class="faq__item">
         <button class="faq__q" type="button" aria-expanded="false">Does it work with my earbuds or headphones?<i class="faq__sign"></i></button>
-        <div class="faq__a"><p>It deliberately ignores them. Earbuds <em>should</em> power off when you're not using them, and holding them awake would just flatten them in your ears.</p></div>
+        <div class="faq__a"><p>It leaves them alone on purpose. Earbuds <em>should</em> power off when you put them away, so Speaker Keeper only ever works on speakers.</p></div>
       </div>
 
       <div class="faq__item">
         <button class="faq__q" type="button" aria-expanded="false">Does it work with any brand of speaker?<i class="faq__sign"></i></button>
-        <div class="faq__a"><p>Yes. It works at the Windows audio level, so the brand doesn't matter. The battery readout depends on whether your speaker reports it to Windows. Many do, some don't.</p></div>
+        <div class="faq__a"><p>Yes, whatever the make. The only part that varies is the battery reading, which depends on whether your speaker shares it with Windows. Many do, some don't, and everything else works either way.</p></div>
       </div>
 
       <div class="faq__item">
         <button class="faq__q" type="button" aria-expanded="false">How do I get new versions?<i class="faq__sign"></i></button>
-        <div class="faq__a"><p>Open Settings and tick <strong>Install updates automatically</strong>. Windows asks for permission once, then it quietly checks for a new version each night and installs it in the background.</p><p>It's off unless you turn it on; otherwise Speaker Keeper never touches the internet at all.</p></div>
+        <div class="faq__a"><p>Turn on <strong>Install updates automatically</strong> in Settings. Windows asks permission once, and after that new versions arrive overnight without you doing anything.</p><p>It's off unless you turn it on, and until you do, Speaker Keeper never goes online at all.</p></div>
       </div>
 
       <div class="faq__item">
         <button class="faq__q" type="button" aria-expanded="false">Does it send my data anywhere?<i class="faq__sign"></i></button>
-        <div class="faq__a"><p>No. There's no account, no analytics and no tracking of any kind. The only network request it ever makes is the update check, and only if you switch it on.</p></div>
+        <div class="faq__a"><p>Nothing leaves your PC. There's no account, no analytics and no tracking of any kind. The one time it goes online is to check for an update, and only if you asked it to.</p></div>
       </div>
 
       <div class="faq__item">
@@ -385,8 +392,21 @@
   </div>
 </footer>
 
+<!-- Full-size screenshot viewer. Empty until a slide is clicked. -->
+<div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Screenshot">
+  <img class="lightbox__img" id="lightbox-img" alt="">
+  <p class="lightbox__cap" id="lightbox-cap"></p>
+  <button class="lightbox__close" id="lightbox-close" type="button" aria-label="Close">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+  </button>
+</div>
+
 <script>
-// Hero carousel. Plain state and a class swap; the fade lives in CSS.
+// Hero carousel and the full-size viewer.
+//
+// It does not advance on its own. A hero that changes under you while you are
+// reading the sentence beside it is a distraction, and it moves the thing you
+// were about to click.
 (function () {
   var root = document.getElementById('shots');
   if (!root) return;
@@ -395,12 +415,6 @@
   var dots  = [].slice.call(root.querySelectorAll('.shots__dot'));
   var cap   = root.querySelector('.shots__cap');
   var at    = 0;
-  var timer = null;
-
-  // Someone who asked the system not to animate things did not ask for a panel
-  // that changes under them every few seconds either.
-  var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var DWELL = 5200;
 
   function show(i) {
     at = (i + shots.length) % shots.length;
@@ -410,37 +424,68 @@
       d.setAttribute('aria-selected', String(n === at));
     });
     cap.textContent = shots[at].dataset.cap;
+    if (box.hasAttribute('hidden')) return;
+    fill();
   }
 
-  function play()  { if (!still && !timer) timer = setInterval(function () { show(at + 1); }, DWELL); }
-  function pause() { clearInterval(timer); timer = null; }
-
-  // Any deliberate move restarts the dwell, so the slide you just chose gets a
-  // full turn rather than whatever was left of the previous one.
-  function go(i) { show(i); pause(); play(); }
-
   root.querySelectorAll('.shots__arrow').forEach(function (b) {
-    b.addEventListener('click', function () { go(at + Number(b.dataset.step)); });
+    b.addEventListener('click', function () { show(at + Number(b.dataset.step)); });
   });
-  dots.forEach(function (d, n) { d.addEventListener('click', function () { go(n); }); });
+  dots.forEach(function (d, n) { d.addEventListener('click', function () { show(n); }); });
 
-  root.addEventListener('keydown', function (e) {
-    if (e.key === 'ArrowLeft')  { go(at - 1); }
-    if (e.key === 'ArrowRight') { go(at + 1); }
+  // ---- full-size viewer ----------------------------------------------------
+  var box     = document.getElementById('lightbox');
+  var boxImg  = document.getElementById('lightbox-img');
+  var boxCap  = document.getElementById('lightbox-cap');
+  var closer  = document.getElementById('lightbox-close');
+  var opener  = null;
+
+  // Both themes' images are in the markup and CSS hides one. The hidden one has
+  // no offsetParent, which is how we know which one the reader is looking at.
+  function visibleImg(shot) {
+    var imgs = shot.querySelectorAll('.shot__img');
+    for (var i = 0; i < imgs.length; i++) if (imgs[i].offsetParent !== null) return imgs[i];
+    return imgs[0];
+  }
+
+  function fill() {
+    var img = visibleImg(shots[at]);
+    boxImg.src = img.currentSrc || img.src;
+    boxImg.alt = shots[at].querySelector('.shot__img--light').alt;
+    boxCap.textContent = shots[at].dataset.cap;
+  }
+
+  function open(fromButton) {
+    opener = fromButton;
+    fill();
+    box.removeAttribute('hidden');
+    document.body.classList.add('is-locked');
+    closer.focus();
+  }
+
+  function close() {
+    box.setAttribute('hidden', '');
+    document.body.classList.remove('is-locked');
+    if (opener) opener.focus();
+    opener = null;
+  }
+
+  shots.forEach(function (shot) {
+    shot.querySelector('.shot__btn').addEventListener('click', function () { open(this); });
   });
 
-  root.addEventListener('mouseenter', pause);
-  root.addEventListener('mouseleave', play);
-  root.addEventListener('focusin', pause);
-  root.addEventListener('focusout', play);
+  closer.addEventListener('click', close);
+  box.addEventListener('click', function (e) { if (e.target === box) close(); });
 
-  // Nothing to animate for a reader who has scrolled past it, or a background tab.
-  document.addEventListener('visibilitychange', function () {
-    if (document.hidden) { pause(); } else { play(); }
+  document.addEventListener('keydown', function (e) {
+    var up = !box.hasAttribute('hidden');
+    if (up && e.key === 'Escape') { close(); return; }
+    if (!up && document.activeElement && !root.contains(document.activeElement)) return;
+    if (e.key === 'ArrowLeft')  { show(at - 1); }
+    if (e.key === 'ArrowRight') { show(at + 1); }
   });
 
   show(0);
-  play();
 })();
 
 // FAQ accordion. Heights are measured rather than transitioned to `auto`,
