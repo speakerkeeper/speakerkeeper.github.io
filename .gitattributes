@@ -1,0 +1,17 @@
+# core.autocrlf=true rewrites LF bytes inside anything git thinks is text, which
+# silently corrupts images. It already happened once in the app repo, to this same
+# icon. Binaries must say so explicitly.
+* text=auto
+
+*.ico  binary
+*.png  binary
+*.jpg  binary
+*.webp binary
+*.woff  binary
+*.woff2 binary
+
+# GitHub Pages serves these as-is; keep them LF so the served bytes are stable.
+*.html text eol=lf
+*.css  text eol=lf
+*.js   text eol=lf
+*.md   text eol=lf
