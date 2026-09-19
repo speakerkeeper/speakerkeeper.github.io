@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Speaker Keeper — stop your Bluetooth speaker falling asleep</title>
+<title>Speaker Keeper: stop your Bluetooth speaker falling asleep</title>
 <meta name="description" content="A tiny free Windows tray app that plays digital silence so your Bluetooth speaker never powers itself off mid-song. No account, no telemetry, MIT licensed.">
 
 <link rel="canonical" href="https://speakerkeeper.github.io/">
@@ -14,7 +14,7 @@
 
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://speakerkeeper.github.io/">
-<meta property="og:title" content="Speaker Keeper — stop your Bluetooth speaker falling asleep">
+<meta property="og:title" content="Speaker Keeper: stop your Bluetooth speaker falling asleep">
 <meta property="og:description" content="A tiny free Windows tray app that plays digital silence so your Bluetooth speaker never powers itself off mid-song.">
 <meta property="og:image" content="https://speakerkeeper.github.io/assets/logo-256.png">
 <meta name="twitter:card" content="summary">
@@ -160,7 +160,7 @@
       <span class="eyebrow">The problem</span>
       <h2>You pause for a minute. It decides you're done.</h2>
       <p>
-        Almost every Bluetooth speaker powers itself off when no sound comes in — on
+        Almost every Bluetooth speaker powers itself off when no sound comes in, on
         purpose, to save battery. Great for a speaker in a bag. Annoying for the one
         on your desk.
       </p>
@@ -193,7 +193,7 @@
       <span class="eyebrow">How it works</span>
       <h2>It plays nothing, on purpose.</h2>
       <p>
-        Not a faint hum, not an inaudible tone — true digital silence, where every
+        Not a faint hum, not an inaudible tone, but true digital silence, where every
         sample is a zero. Your volume slider makes no difference, because there is no
         sound to make louder.
       </p>
@@ -291,12 +291,12 @@
     <div class="faq">
       <div class="faq__item">
         <button class="faq__q" type="button" aria-expanded="false">Will I hear anything?<i class="faq__sign"></i></button>
-        <div class="faq__a"><p>No. It's true digital silence — every sample is a zero. Your volume slider makes no difference because there's no sound to make louder.</p></div>
+        <div class="faq__a"><p>No. It's true digital silence: every sample is a zero. Your volume slider makes no difference because there's no sound to make louder.</p></div>
       </div>
 
       <div class="faq__item">
         <button class="faq__q" type="button" aria-expanded="false">Will this drain my speaker's battery?<i class="faq__sign"></i></button>
-        <div class="faq__a"><p>Your speaker stays on instead of sleeping, so yes — it uses power the way it does when you're actually listening. That's the trade. Speaker Keeper warns you when the battery gets low, and you can quit it any time.</p></div>
+        <div class="faq__a"><p>Your speaker stays on instead of sleeping, so yes, it uses power the way it does when you're actually listening. That's the trade. Speaker Keeper warns you when the battery gets low, and you can quit it any time.</p></div>
       </div>
 
       <div class="faq__item">
@@ -311,12 +311,12 @@
 
       <div class="faq__item">
         <button class="faq__q" type="button" aria-expanded="false">Does it work with any brand of speaker?<i class="faq__sign"></i></button>
-        <div class="faq__a"><p>Yes. It works at the Windows audio level, so the brand doesn't matter. The battery readout depends on whether your speaker reports it to Windows — many do, some don't.</p></div>
+        <div class="faq__a"><p>Yes. It works at the Windows audio level, so the brand doesn't matter. The battery readout depends on whether your speaker reports it to Windows. Many do, some don't.</p></div>
       </div>
 
       <div class="faq__item">
         <button class="faq__q" type="button" aria-expanded="false">How do I get new versions?<i class="faq__sign"></i></button>
-        <div class="faq__a"><p>Open Settings and tick <strong>Install updates automatically</strong>. Windows asks for permission once, then it quietly checks for a new version each night and installs it in the background.</p><p>It's off unless you turn it on — otherwise Speaker Keeper never touches the internet at all.</p></div>
+        <div class="faq__a"><p>Open Settings and tick <strong>Install updates automatically</strong>. Windows asks for permission once, then it quietly checks for a new version each night and installs it in the background.</p><p>It's off unless you turn it on; otherwise Speaker Keeper never touches the internet at all.</p></div>
       </div>
 
       <div class="faq__item">
@@ -354,7 +354,7 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
       <p>
         Windows will show a blue <strong>“Windows protected your PC”</strong> warning. That's
-        SmartScreen — it appears for any app that hasn't paid for a code-signing
+        SmartScreen. It appears for any app that hasn't paid for a code-signing
         certificate, which this one hasn't. Click <strong>More info</strong> →
         <strong>Run anyway</strong>, or
         <a href="https://github.com/kevinabouhanna/speaker-keeper#building-from-source">build it yourself</a>
@@ -410,6 +410,54 @@ document.querySelectorAll('.faq__item').forEach(function (item) {
     }
   });
 });
+
+// In-page links scroll rather than jump.
+//
+// `scroll-behavior: smooth` in the stylesheet covers this on its own when the
+// browser honours it, but a plain `href="#id"` still hands the scroll to the
+// browser, and that is the part that varies. Driving it here makes the result the
+// same everywhere, and keeps the landing position tied to the real nav height.
+(function () {
+  var nav = document.querySelector('.nav');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  // The nav floats over the page, so a target scrolled flush to the top would sit
+  // underneath it. Measured rather than hard-coded: the bar changes height between
+  // breakpoints, and a stale constant leaves headings half-hidden.
+  function syncOffset() {
+    if (!nav) return;
+    var h = nav.getBoundingClientRect().height + 28;
+    document.documentElement.style.scrollPaddingTop = Math.round(h) + 'px';
+  }
+  syncOffset();
+  window.addEventListener('resize', syncOffset);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(syncOffset);
+
+  document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+    link.addEventListener('click', function (e) {
+      var hash = link.getAttribute('href');
+      if (!hash || hash.length < 2) return;
+
+      var target = document.getElementById(hash.slice(1));
+      if (!target) return;                 // let an unknown anchor behave normally
+
+      e.preventDefault();
+      target.scrollIntoView({
+        behavior: reduce.matches ? 'auto' : 'smooth',
+        block: 'start'
+      });
+
+      // A normal anchor moves keyboard focus as well as the viewport. scrollIntoView
+      // does not, so a keyboard user would carry on tabbing from the nav.
+      // preventScroll stops focus() fighting the animation it was just given.
+      if (target.tabIndex < 0) target.setAttribute('tabindex', '-1');
+      target.focus({ preventScroll: true });
+
+      // Keep the address bar in step, without the jump that setting location.hash causes.
+      if (history.replaceState) history.replaceState(null, '', hash);
+    });
+  });
+})();
 </script>
 
 </body>
