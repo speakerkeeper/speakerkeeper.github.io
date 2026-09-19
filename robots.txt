@@ -1,0 +1,6 @@
+# Speaker Keeper: a static, public, single-page site. Everything here is meant
+# to be read, by people and by machines alike.
+User-agent: *
+Allow: /
+
+Sitemap: https://speakerkeeper.github.io/sitemap.xml

@@ -4,20 +4,29 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Speaker Keeper: stop your Bluetooth speaker falling asleep</title>
-<meta name="description" content="Use your Bluetooth speaker as your everyday PC speaker. Speaker Keeper stops it switching itself off, so it's ready whenever you are. Free and private.">
+<meta name="description" content="Use your Bluetooth speaker as your everyday PC audio. Speaker Keeper stops it switching itself off, so it's ready whenever you are. Free and private.">
 
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <link rel="canonical" href="https://speakerkeeper.github.io/">
+<link rel="alternate" type="text/plain" href="https://speakerkeeper.github.io/llms.txt" title="llms.txt">
 <link rel="icon" href="assets/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" href="assets/logo-128.png">
 <link rel="apple-touch-icon" href="assets/logo-256.png">
 <meta name="theme-color" content="#0f71fa">
 
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="Speaker Keeper">
+<meta property="og:locale" content="en">
 <meta property="og:url" content="https://speakerkeeper.github.io/">
 <meta property="og:title" content="Speaker Keeper: stop your Bluetooth speaker falling asleep">
-<meta property="og:description" content="Use your Bluetooth speaker as your everyday PC speaker. Speaker Keeper stops it switching itself off, so it's ready whenever you are.">
-<meta property="og:image" content="https://speakerkeeper.github.io/assets/logo-256.png">
-<meta name="twitter:card" content="summary">
+<meta property="og:description" content="Use your Bluetooth speaker as your everyday PC audio. Speaker Keeper stops it switching itself off, so it's ready whenever you are.">
+<meta property="og:image" content="https://speakerkeeper.github.io/assets/og.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Speaker Keeper: keeps your Bluetooth speaker awake">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://speakerkeeper.github.io/assets/og.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,11 +40,106 @@
   "name": "Speaker Keeper",
   "applicationCategory": "UtilitiesApplication",
   "operatingSystem": "Windows 10, Windows 11",
-  "description": "Use your Bluetooth speaker as your everyday PC speaker. Speaker Keeper stops it switching itself off, so it's ready whenever you are.",
+  "description": "Use your Bluetooth speaker as your everyday PC audio. Speaker Keeper stops it switching itself off, so it's ready whenever you are.",
   "url": "https://speakerkeeper.github.io/",
   "downloadUrl": "https://github.com/kevinabouhanna/speaker-keeper/releases/latest",
+  "installUrl": "https://github.com/kevinabouhanna/speaker-keeper/releases/latest/download/Install.exe",
   "license": "https://opensource.org/licenses/MIT",
+  "softwareRequirements": "Windows 10 or 11, a Bluetooth speaker. No .NET or other runtime.",
+  "isAccessibleForFree": true,
+  "inLanguage": "en",
+  "image": "https://speakerkeeper.github.io/assets/logo-256.png",
+  "screenshot": [
+    "https://speakerkeeper.github.io/assets/shots/panel-light.png",
+    "https://speakerkeeper.github.io/assets/shots/speakers-light.png",
+    "https://speakerkeeper.github.io/assets/shots/general-light.png",
+    "https://speakerkeeper.github.io/assets/shots/log-light.png"
+  ],
+  "featureList": [
+    "Stops a Bluetooth speaker powering itself off during silence",
+    "Works with every Bluetooth speaker you own, each with its own switch",
+    "Shows the connected Bluetooth speaker and its battery, and warns you when it runs low",
+    "Leaves earbuds and headphones alone",
+    "Starts with Windows and lives in the tray",
+    "Optional automatic updates, off until you turn them on",
+    "No account, no telemetry, nothing leaves your PC"
+  ],
+  "author": { "@type": "Person", "name": "Kevin Abou Hanna" },
+  "sameAs": "https://github.com/kevinabouhanna/speaker-keeper",
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I stop my Bluetooth speaker from turning itself off on Windows?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Install Speaker Keeper and leave it running. It holds a silent audio stream open on the Bluetooth speaker you choose, so it never sees the silence that makes it power down and Windows keeps the connection up. Nothing is audible and nothing changes on your PC. It sits in the tray, uses almost nothing, and there is no setting to get right."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the best setup for everyday use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Leave your Bluetooth speaker plugged in. Speaker Keeper is built for the Bluetooth speaker that lives on your desk, and one sitting on its charger is simply always ready, which is the setup it's happiest in. Away from a charger it works just as well, and keeps an eye on the battery for you: it stays awake rather than asleep, so it uses power the way it does while you're listening, and it tells you in good time when it's worth plugging in."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will you support Mac?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A macOS version is on our roadmap. First we're launching Speaker Keeper on the Microsoft Store, and a Mac build comes after that."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it work with my earbuds or headphones?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It leaves them alone on purpose. Earbuds should power off when you put them away, so Speaker Keeper only ever works on Bluetooth speakers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it work with any brand of Bluetooth speaker?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, whatever the make. The only part that varies is the battery reading, which depends on whether your Bluetooth speaker shares it with Windows. Many do, some don't, and everything else works either way."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I get new versions?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Turn on Install updates automatically in Settings. Windows asks permission once, and after that new versions arrive overnight without you doing anything. It's off unless you turn it on, and until you do, Speaker Keeper never goes online at all."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it send my data anywhere?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nothing leaves your PC. There's no account, no analytics and no tracking of any kind. The one time it goes online is to check for an update, and only if you asked it to."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I uninstall it?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Settings → Apps → Installed apps → Speaker Keeper → Uninstall, just like any other program."
+      }
+    }
+  ]
 }
 </script>
 </head>
@@ -74,7 +178,7 @@
       <h1>Your Bluetooth speaker <br>keeps falling asleep. <br><em>This fixes that.</em></h1>
 
       <p class="hero__sub">
-        Use your Bluetooth speaker as your everyday PC speaker. Speaker Keeper stops
+        Use your Bluetooth speaker as your everyday PC audio. Speaker Keeper stops
         it switching itself off, so it's ready whenever you are. Nothing to set up.
       </p>
 
@@ -117,12 +221,12 @@
         <div class="shots__stage">
           <figure class="shot is-on" data-cap="One click opens the panel">
             <button class="shot__btn" type="button" aria-label="View full size: One click opens the panel">
-              <img class="shot__img shot__img--light" src="assets/shots/panel-light.png" alt="The Speaker Keeper panel: the connected speaker, a switch to keep it awake, and its battery.">
+              <img class="shot__img shot__img--light" src="assets/shots/panel-light.png" alt="The Speaker Keeper panel: the connected Bluetooth speaker, a switch to keep it awake, and its battery.">
               <img class="shot__img shot__img--dark" src="assets/shots/panel-dark.png" alt="" aria-hidden="true">
             </button>
           </figure>
-          <figure class="shot" data-cap="Choose which speakers to keep awake">
-            <button class="shot__btn" type="button" aria-label="View full size: Choose which speakers to keep awake">
+          <figure class="shot" data-cap="Choose which Bluetooth speakers to keep awake">
+            <button class="shot__btn" type="button" aria-label="View full size: Choose which Bluetooth speakers to keep awake">
               <img class="shot__img shot__img--light" src="assets/shots/speakers-light.png" alt="The Speakers page, listing the Bluetooth speakers Speaker Keeper knows about, each with its own switch." loading="lazy">
               <img class="shot__img shot__img--dark" src="assets/shots/speakers-dark.png" alt="" aria-hidden="true" loading="lazy">
             </button>
@@ -146,7 +250,7 @@
         <div class="shots__bar">
           <div class="shots__dots" role="tablist" aria-label="Choose a screenshot">
             <button class="shots__dot is-on" type="button" role="tab" aria-selected="true" aria-label="One click opens the panel"></button>
-            <button class="shots__dot" type="button" role="tab" aria-selected="false" aria-label="Choose which speakers to keep awake"></button>
+            <button class="shots__dot" type="button" role="tab" aria-selected="false" aria-label="Choose which Bluetooth speakers to keep awake"></button>
             <button class="shots__dot" type="button" role="tab" aria-selected="false" aria-label="Battery warnings, startup, updates"></button>
             <button class="shots__dot" type="button" role="tab" aria-selected="false" aria-label="A live log of everything it does"></button>
           </div>
@@ -168,11 +272,11 @@
 <section class="section section--alt" id="problem">
   <div class="wrap">
     <div class="section-head">
-      <span class="eyebrow">The problem</span>
+      <span class="eyebrow eyebrow--red">The problem</span>
       <h2>You pause for a minute. It decides you're done.</h2>
       <p>
         Almost every Bluetooth speaker powers itself off when no sound comes in, on
-        purpose, to save battery. Great for a speaker in a bag. Annoying for the one
+        purpose, to save battery. Great for a Bluetooth speaker in a bag. Annoying for the one
         on your desk.
       </p>
     </div>
@@ -181,7 +285,7 @@
       <article class="card">
         <span class="card__num">01</span>
         <h3>The first second vanishes</h3>
-        <p>You press play and the opening of the track is clipped, because the speaker is still waking up.</p>
+        <p>You press play and the opening of the track is clipped, because the Bluetooth speaker is still waking up.</p>
       </article>
       <article class="card">
         <span class="card__num">02</span>
@@ -201,10 +305,10 @@
 <section class="section" id="how">
   <div class="wrap">
     <div class="section-head">
-      <span class="eyebrow">What changes</span>
-      <h2>Your speaker starts behaving like it's wired.</h2>
+      <span class="eyebrow eyebrow--green">What changes</span>
+      <h2>Your Bluetooth speaker starts behaving like it's wired.</h2>
       <p>
-        Same speaker, same Bluetooth, none of the waiting. You stop thinking about it
+        Same Bluetooth speaker, same connection, none of the waiting. You stop thinking about it
         entirely, which is the whole idea.
       </p>
     </div>
@@ -243,7 +347,7 @@
         <div class="feature__icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 3 4 4-4 4"/><path d="M20 7H4"/><path d="m8 21-4-4 4-4"/><path d="M4 17h16"/></svg>
         </div>
-        <h3>All of your speakers</h3>
+        <h3>All of your Bluetooth speakers</h3>
         <p>Set it up for each Bluetooth speaker you own. It remembers them, so you can move between the one on your desk and the one in the kitchen without touching a thing.</p>
       </article>
 
@@ -252,7 +356,7 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/><rect x="12" y="12.5" width="7" height="4" rx="2"/><circle cx="17" cy="14.5" r="1"/></svg>
         </div>
         <h3>Everything in one click</h3>
-        <p>See which speaker you're using, how much battery it has left, and turn it off for that speaker. It warns you when the battery gets low.</p>
+        <p>See which Bluetooth speaker you're using, how much battery it has left, and turn it off for that Bluetooth speaker. It warns you when the battery gets low.</p>
       </article>
 
       <article class="feature">
@@ -260,14 +364,14 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 14v-3a9 9 0 0 1 18 0v3"/><path d="M21 16a2 2 0 0 1-2 2h-1v-6h1a2 2 0 0 1 2 2Z"/><path d="M3 16a2 2 0 0 0 2 2h1v-6H5a2 2 0 0 0-2 2Z"/></svg>
         </div>
         <h3>Leaves earbuds alone</h3>
-        <p>It only works on speakers. Your earbuds and headphones still switch themselves off when you put them away.</p>
+        <p>It only works on Bluetooth speakers. Your earbuds and headphones still switch themselves off when you put them away.</p>
       </article>
 
       <article class="feature">
         <div class="feature__icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg>
         </div>
-        <h3>Free, updates included</h3>
+        <h3>Free, lifetime updates included</h3>
         <p>No licence, no subscription, nothing to buy later. Switch on automatic updates and new versions arrive overnight.</p>
       </article>
 
@@ -300,23 +404,28 @@
 
     <div class="faq">
       <div class="faq__item">
-        <button class="faq__q" type="button" aria-expanded="false">What's the best setup for everyday use?<i class="faq__sign"></i></button>
-        <div class="faq__a"><p>Leave your speaker plugged in. Speaker Keeper is built for the speaker that lives on your desk, and a desk speaker on its charger is simply always ready — that's the setup it's happiest in.</p><p>Away from a charger it works just as well, and keeps an eye on the battery for you: it stays awake rather than asleep, so it uses power the way it does while you're listening, and it tells you in good time when it's worth plugging in.</p></div>
+        <button class="faq__q" type="button" aria-expanded="false">How do I stop my Bluetooth speaker from turning itself off on Windows?<i class="faq__sign"></i></button>
+        <div class="faq__a"><p>Install Speaker Keeper and leave it running. It holds a silent audio stream open on the Bluetooth speaker you choose, so it never sees the silence that makes it power down and Windows keeps the connection up.</p><p>Nothing is audible and nothing changes on your PC. It sits in the tray, uses almost nothing, and there is no setting to get right.</p></div>
       </div>
 
       <div class="faq__item">
-        <button class="faq__q" type="button" aria-expanded="false">Do my play and skip keys still work?<i class="faq__sign"></i></button>
-        <div class="faq__a"><p>Exactly as before. Your keyboard keeps controlling Spotify, YouTube and everything else, and Speaker Keeper never appears among them.</p></div>
+        <button class="faq__q" type="button" aria-expanded="false">What's the best setup for everyday use?<i class="faq__sign"></i></button>
+        <div class="faq__a"><p>Leave your Bluetooth speaker plugged in. Speaker Keeper is built for the Bluetooth speaker that lives on your desk, and one sitting on its charger is simply always ready, which is the setup it's happiest in.</p><p>Away from a charger it works just as well, and keeps an eye on the battery for you: it stays awake rather than asleep, so it uses power the way it does while you're listening, and it tells you in good time when it's worth plugging in.</p></div>
+      </div>
+
+      <div class="faq__item">
+        <button class="faq__q" type="button" aria-expanded="false">Will you support Mac?<i class="faq__sign"></i></button>
+        <div class="faq__a"><p>A macOS version is on our roadmap. First we're launching Speaker Keeper on the Microsoft Store, and a Mac build comes after that.</p></div>
       </div>
 
       <div class="faq__item">
         <button class="faq__q" type="button" aria-expanded="false">Does it work with my earbuds or headphones?<i class="faq__sign"></i></button>
-        <div class="faq__a"><p>It leaves them alone on purpose. Earbuds <em>should</em> power off when you put them away, so Speaker Keeper only ever works on speakers.</p></div>
+        <div class="faq__a"><p>It leaves them alone on purpose. Earbuds <em>should</em> power off when you put them away, so Speaker Keeper only ever works on Bluetooth speakers.</p></div>
       </div>
 
       <div class="faq__item">
-        <button class="faq__q" type="button" aria-expanded="false">Does it work with any brand of speaker?<i class="faq__sign"></i></button>
-        <div class="faq__a"><p>Yes, whatever the make. The only part that varies is the battery reading, which depends on whether your speaker shares it with Windows. Many do, some don't, and everything else works either way.</p></div>
+        <button class="faq__q" type="button" aria-expanded="false">Does it work with any brand of Bluetooth speaker?<i class="faq__sign"></i></button>
+        <div class="faq__a"><p>Yes, whatever the make. The only part that varies is the battery reading, which depends on whether your Bluetooth speaker shares it with Windows. Many do, some don't, and everything else works either way.</p></div>
       </div>
 
       <div class="faq__item">
@@ -340,7 +449,7 @@
 <!-- ------------------------------------------------------------- download -->
 <section class="section section--alt download" id="download">
   <div class="wrap">
-    <h2>Let your speaker stay awake.</h2>
+    <h2>Let your Bluetooth speaker stay awake.</h2>
     <p>Download, double-click, done. It starts with Windows and stays out of the way.</p>
 
     <div class="download__cta">
@@ -428,6 +537,39 @@
   });
   dots.forEach(function (d, n) { d.addEventListener('click', function () { show(n); }); });
 
+  // ---- swipe ---------------------------------------------------------------
+  // Touch and pen only: a mouse has the arrows and the arrow keys, and claiming
+  // its drag would fight text selection. The stage is `touch-action: pan-y`, so
+  // a vertical drag still scrolls the page and only the horizontal part is ours.
+  var stage   = root.querySelector('.shots__stage');
+  var start   = null;   // {x, y} of the finger going down
+  var slid    = false;  // this gesture moved far enough sideways to count
+  var swiped  = false;  // and so the click it ends with must not open the viewer
+
+  stage.addEventListener('pointerdown', function (e) {
+    if (e.pointerType === 'mouse') return;
+    start = { x: e.clientX, y: e.clientY };
+    slid = false;
+  });
+
+  stage.addEventListener('pointermove', function (e) {
+    if (!start) return;
+    var dx = Math.abs(e.clientX - start.x);
+    var dy = Math.abs(e.clientY - start.y);
+    if (dx > 10 && dx > dy) slid = true;
+  });
+
+  stage.addEventListener('pointerup', function (e) {
+    if (!start) return;
+    var dx = e.clientX - start.x;
+    start = null;
+    if (!slid || Math.abs(dx) < 40) return;
+    swiped = true;                       // consumed by the click that follows
+    show(at + (dx < 0 ? 1 : -1));
+  });
+
+  stage.addEventListener('pointercancel', function () { start = null; });
+
   // ---- full-size viewer ----------------------------------------------------
   var box     = document.getElementById('lightbox');
   var boxImg  = document.getElementById('lightbox-img');
@@ -466,7 +608,10 @@
   }
 
   shots.forEach(function (shot) {
-    shot.querySelector('.shot__btn').addEventListener('click', function () { open(this); });
+    shot.querySelector('.shot__btn').addEventListener('click', function () {
+      if (swiped) { swiped = false; return; }   // that tap was the end of a swipe
+      open(this);
+    });
   });
 
   closer.addEventListener('click', close);

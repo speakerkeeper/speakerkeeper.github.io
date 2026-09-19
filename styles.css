@@ -19,6 +19,15 @@
   --accent:      #0f71fa;
   --accent-deep: #0b4ed6;
   --accent-tint: #e8f1fe;
+  --red:         #d93a3a;
+  --red-tint:    #fdeceb;
+  --red-ink:     #ac2a2a;
+  --green:       #2ea043;
+  --green-tint:  #e6f6ec;
+  --green-ink:   #1a7f3c;
+  --yellow:      #e0a200;
+  --yellow-tint: #fdf6e0;
+  --yellow-ink:  #8a6100;
   --shadow-sm:   0 1px 2px rgba(11, 14, 20, .06), 0 1px 3px rgba(11, 14, 20, .04);
   --shadow-md:   0 4px 12px rgba(11, 14, 20, .06), 0 12px 32px rgba(11, 14, 20, .07);
   --shadow-lg:   0 8px 24px rgba(11, 14, 20, .08), 0 32px 64px rgba(11, 14, 20, .10);
@@ -40,6 +49,15 @@
     --accent:      #4b9bff;
     --accent-deep: #2f7ff0;
     --accent-tint: #122439;
+    --red:         #ff7a7a;
+    --red-tint:    #2a1618;
+    --red-ink:     #ff9b9b;
+    --green:       #56d364;
+    --green-tint:  #14291c;
+    --green-ink:   #7ee89a;
+    --yellow:      #e3b341;
+    --yellow-tint: #2a2213;
+    --yellow-ink:  #f0cf76;
     --shadow-sm:   0 1px 2px rgba(0, 0, 0, .4);
     --shadow-md:   0 4px 12px rgba(0, 0, 0, .35), 0 12px 32px rgba(0, 0, 0, .3);
     --shadow-lg:   0 8px 24px rgba(0, 0, 0, .4), 0 32px 64px rgba(0, 0, 0, .45);
@@ -57,6 +75,15 @@
   --accent:      #4b9bff;
   --accent-deep: #2f7ff0;
   --accent-tint: #122439;
+  --red:         #ff7a7a;
+  --red-tint:    #2a1618;
+  --red-ink:     #ff9b9b;
+  --green:       #56d364;
+  --green-tint:  #14291c;
+  --green-ink:   #7ee89a;
+  --yellow:      #e3b341;
+  --yellow-tint: #2a2213;
+  --yellow-ink:  #f0cf76;
   --shadow-sm:   0 1px 2px rgba(0, 0, 0, .4);
   --shadow-md:   0 4px 12px rgba(0, 0, 0, .35), 0 12px 32px rgba(0, 0, 0, .3);
   --shadow-lg:   0 8px 24px rgba(0, 0, 0, .4), 0 32px 64px rgba(0, 0, 0, .45);
@@ -135,6 +162,24 @@ img { max-width: 100%; display: block; }
   padding: 6px 13px 6px 10px;
   box-shadow: var(--shadow-sm);
 }
+
+/* Two sections carry their own hue rather than the blue: the problem is stated in
+   red and the fix in green, so the two halves of the argument are told apart at a
+   glance. The accent variables are re-pointed on the section itself, which is
+   enough for everything inside it (rules, step numbers, tints) to follow. */
+.eyebrow--red {
+  color: var(--red-ink);
+  background: var(--red-tint);
+  border-color: color-mix(in srgb, var(--red) 28%, transparent);
+}
+.eyebrow--green {
+  color: var(--green-ink);
+  background: var(--green-tint);
+  border-color: color-mix(in srgb, var(--green) 28%, transparent);
+}
+
+#problem { --accent: var(--red);   --accent-deep: var(--red-ink);   --accent-tint: var(--red-tint); }
+#how     { --accent: var(--green); --accent-deep: var(--green-ink); --accent-tint: var(--green-tint); }
 
 /* The one live accent: a pulsing dot that reads "it is doing something". */
 .dot {
@@ -294,19 +339,47 @@ img { max-width: 100%; display: block; }
   line-height: 1.55;
 }
 
-.hero__cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+/* A primary and a secondary button sitting together read as a pair, so they are
+   sized as one: the grid takes its width from the wider label and hands the same
+   track width to both, and neither label wraps. `fit-content` keeps the pair as
+   wide as its contents rather than as wide as the column. On phones the same
+   rule stacks them, still matched, because it becomes one column. */
+.hero__cta, .download__cta {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: 12px;
+  width: fit-content;
+}
+.hero__cta { margin-top: 30px; }
+.hero__cta > .btn, .download__cta > .btn { width: 100%; }
+
+@media (max-width: 560px) {
+  .hero__cta, .download__cta { grid-auto-flow: row; grid-auto-columns: auto; }
+}
 
 .hero__meta {
   margin-top: 22px;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 8px 16px;
+  gap: 8px 10px;
   font-size: 13.5px;
-  color: var(--ink-3);
 }
-.hero__meta span { display: inline-flex; align-items: center; gap: 7px; }
-.hero__meta svg { width: 14px; height: 14px; flex: none; }
+/* Three plain facts, each on a pastel green field with a green tick: the point is
+   that they are all reassurances, so they are all the same colour. */
+.hero__meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 13px 6px 11px;
+  border-radius: 999px;
+  background: var(--green-tint);
+  border: 1px solid color-mix(in srgb, var(--green) 26%, transparent);
+  color: var(--green-ink);
+  font-weight: 550;
+}
+.hero__meta svg { width: 14px; height: 14px; flex: none; color: var(--green); stroke-width: 2.5; }
 
 @media (max-width: 900px) {
   .hero__grid { grid-template-columns: 1fr; }
@@ -347,6 +420,8 @@ img { max-width: 100%; display: block; }
   aspect-ratio: 3 / 2;
   border-radius: var(--radius);
   overflow: hidden;
+  /* The horizontal drag belongs to the carousel, the vertical one to the page. */
+  touch-action: pan-y;
 }
 
 .shot {
@@ -457,7 +532,7 @@ img { max-width: 100%; display: block; }
 
 .card__num {
   font-size: 12px; font-weight: 700; letter-spacing: .08em;
-  color: var(--ink-3); display: block; margin-bottom: 14px;
+  color: var(--accent); display: block; margin-bottom: 14px;
   font-variant-numeric: tabular-nums;
 }
 
@@ -573,7 +648,7 @@ img { max-width: 100%; display: block; }
 .download { text-align: center; }
 .download h2 { font-size: clamp(32px, 5vw, 52px); margin-bottom: 18px; }
 .download p { color: var(--ink-2); font-size: 18px; max-width: 48ch; margin-inline: auto; }
-.download__cta { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+.download__cta { margin: 32px auto 0; }
 .download__note { margin-top: 20px; font-size: 13.5px; color: var(--ink-3); }
 
 .smartscreen {
@@ -581,15 +656,19 @@ img { max-width: 100%; display: block; }
   max-width: 620px;
   text-align: left;
   display: flex; gap: 14px;
-  background: var(--paper);
-  border: 1px solid var(--line);
+  /* A caution, not a feature card, so it wears the colour a caution wears: a
+     pastel yellow field, ink a deep version of the same hue, and a border sitting
+     between the two. */
+  background: var(--yellow-tint);
+  border: 1px solid color-mix(in srgb, var(--yellow) 45%, var(--yellow-tint));
   border-radius: var(--radius);
   padding: 18px 20px;
   box-shadow: var(--shadow-sm);
 }
-.smartscreen svg { width: 18px; height: 18px; color: var(--ink-3); flex: none; margin-top: 3px; }
-.smartscreen p { font-size: 14.5px; color: var(--ink-2); margin: 0; max-width: none; }
-.smartscreen strong { color: var(--ink); font-weight: 650; }
+.smartscreen svg { width: 18px; height: 18px; color: var(--yellow); flex: none; margin-top: 3px; }
+.smartscreen p { font-size: 14.5px; color: var(--yellow-ink); margin: 0; max-width: none; }
+.smartscreen strong { color: var(--yellow-ink); font-weight: 650; }
+.smartscreen a { color: var(--yellow-ink); text-underline-offset: 2px; }
 
 /* ------------------------------------------------------------- footer ---- */
 

@@ -1,0 +1,55 @@
+# Speaker Keeper
+
+> Speaker Keeper is a free, open-source Windows tray app that stops a Bluetooth
+> speaker powering itself off during silence, so the Bluetooth speaker on your
+> desk behaves like a wired one that is simply always on.
+
+## The problem it solves
+
+Almost every Bluetooth speaker powers itself down after a few minutes without an
+incoming audio stream, to save battery. On a desk, where the same Bluetooth
+speaker is used as the everyday PC output, that behaviour shows up as:
+
+- the first second or two of a track, video or call being clipped while the
+  Bluetooth speaker wakes up
+- nothing playing at all until the Bluetooth speaker is reconnected by hand
+- the Bluetooth speaker disappearing from Windows sound settings until its power
+  button is pressed
+
+Common ways people describe it: Bluetooth speaker keeps turning off, keeps going
+to sleep, keeps disconnecting when idle, cuts off the first second of audio, has
+to be woken up before every song, drops out of Windows sound settings.
+
+## How it works
+
+Speaker Keeper opens a WASAPI render stream on the default output endpoint and
+feeds it digital silence, so the A2DP link stays up without a sound being made.
+The stream is hidden from the volume mixer, and it follows the default output
+device, so switching outputs or losing the Bluetooth link rebuilds it.
+
+## Facts
+
+- Platform: Windows 10 and Windows 11. A macOS version is on the roadmap, after a
+  Microsoft Store release of the Windows version.
+- Price: free, with lifetime updates. MIT licensed, source public.
+- Privacy: no account, no telemetry, nothing leaves the PC. It goes online only to
+  check for updates, and only if automatic updates are turned on.
+- Install: one small file, no .NET or other runtime. Starts with Windows.
+- Scope: Bluetooth speakers only. Earbuds and headphones are deliberately left
+  alone so they still power off when put away.
+- Works with any make of Bluetooth speaker. Only the battery readout varies, since
+  it depends on whether the Bluetooth speaker reports battery to Windows.
+- Per-device: each Bluetooth speaker you own gets its own switch, and the app
+  remembers them.
+- Windows SmartScreen shows a "Windows protected your PC" warning, because the
+  installer is not code-signed. More info, then Run anyway.
+
+## Links
+
+- [Website](https://speakerkeeper.github.io/): the whole product in one page, with
+  screenshots and the FAQ.
+- [Download for Windows](https://github.com/kevinabouhanna/speaker-keeper/releases/latest/download/Install.exe): the installer.
+- [Source code](https://github.com/kevinabouhanna/speaker-keeper): MIT licensed.
+- [How it's built](https://github.com/kevinabouhanna/speaker-keeper/blob/main/docs/TECHNICAL.md): the WASAPI silence stream, the tray UI, the update path.
+- [Releases](https://github.com/kevinabouhanna/speaker-keeper/releases): every version and its notes.
+- [Report a bug](https://github.com/kevinabouhanna/speaker-keeper/issues): issue tracker.

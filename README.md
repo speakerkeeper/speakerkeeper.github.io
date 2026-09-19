@@ -10,11 +10,24 @@ Live at **https://speakerkeeper.github.io**
 ```
 index.html      the whole page
 styles.css      design tokens + layout
-assets/         logo (128/256) and favicon, copied from the app repo
+llms.txt        plain-text brief for assistants and answer engines
+robots.txt      crawler directives, points at the sitemap
+sitemap.xml     the one URL, with its lastmod
+CLAUDE.md       conventions for anyone (or anything) editing this
+assets/         logo (128/256), favicon, and the link-preview card
 ```
 
-Static HTML and CSS with one small inline script for the FAQ accordion. No build
-step, no dependencies. GitHub Pages serves the files as they are.
+`assets/og.png` is what unfurls when the site is linked: the icon, the name, and
+five words saying what it does. It is a screenshot of `assets/og-card.html`, and
+that file carries the command that regenerates it.
+
+Static HTML and CSS with one small inline script for the carousel, the full-size
+viewer and the FAQ accordion. No build step, no dependencies. GitHub Pages serves
+the files as they are.
+
+`<head>` carries two JSON-LD blocks: a `SoftwareApplication` describing the app and
+a `FAQPage` generated from the visible FAQ. The second has to match the questions
+on the page word for word, so regenerate it rather than editing it by hand.
 
 ## Brand
 
@@ -32,6 +45,18 @@ ratio has slipped and the page stops reading as calm.
 
 The accent matches the app icon's gradient (`#4fa8ff` → `#0b4ed6`), so the tray
 icon and the site are recognisably the same product.
+
+Three semantic hues sit alongside the blue, each as a trio: the hue itself, a
+`-tint` for pastel fills and an `-ink` dark enough to read on that fill.
+
+| Token | Where it is used | Light | Dark |
+|---|---|---|---|
+| `--red` | The problem section: its eyebrow and card numbers | `#d93a3a` | `#ff7a7a` |
+| `--green` | What changes: its eyebrow and step rules, and the hero's ticks | `#2ea043` | `#56d364` |
+| `--yellow` | The SmartScreen caution | `#e0a200` | `#e3b341` |
+
+Those two sections re-point `--accent` on themselves, so everything inside them
+follows without a second set of rules.
 
 Type is [Inter](https://rsms.me/inter/), tight tracking on display sizes.
 
