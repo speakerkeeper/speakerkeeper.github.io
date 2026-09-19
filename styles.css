@@ -320,87 +320,111 @@ img { max-width: 100%; display: block; }
   .hero h1 em { display: inline; }
 }
 
-/* ------------------------------------------------ hero visual: the tray -- */
+/* ------------------------------------------------- hero visual: shots --
+   The hero carousel: real screenshots of the app.
 
-.tray {
-  position: relative;
+   Every shot is captured 3:2 with the window filling about the same share of
+   the frame, so one aspect-ratio box holds all of them and each lands the same
+   size on the page. The backdrop baked into the images is this panel colour,
+   which is why the edges disappear rather than sitting in a visible rectangle.
+
+   Two images per slide, one per theme, swapped the same way the palette is.
+   Both download, which is a few tens of kilobytes; a <picture> element would
+   save that but follows prefers-color-scheme only, and would ignore the
+   data-theme override the rest of this stylesheet honours. */
+.shots {
   background: var(--panel);
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
-  padding: 22px;
+  padding: 14px 14px 12px;
   box-shadow: var(--shadow-lg);
 }
 
-/* Tooltip card: what you actually see when you hover the tray icon. */
-.tray__card {
-  background: var(--paper);
-  border: 1px solid var(--line);
+.shots__stage {
+  position: relative;
+  aspect-ratio: 3 / 2;
   border-radius: var(--radius);
-  padding: 16px 18px;
-  box-shadow: var(--shadow-md);
+  overflow: hidden;
 }
 
-.tray__row { display: flex; align-items: center; gap: 12px; }
-.tray__row img { width: 34px; height: 34px; border-radius: 9px; flex: none; }
-.tray__name { font-weight: 650; font-size: 15px; letter-spacing: -0.01em; }
-.tray__state {
-  display: inline-flex; align-items: center; gap: 7px;
-  font-size: 13px; color: var(--ink-2); margin-top: 2px;
+.shot {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .45s ease;
+}
+.shot.is-on { opacity: 1; visibility: visible; }
+
+.shot__img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.shot__img--dark { display: none; }
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .shot__img--light { display: none; }
+  :root:not([data-theme="light"]) .shot__img--dark  { display: block; }
+}
+:root[data-theme="dark"] .shot__img--light { display: none; }
+:root[data-theme="dark"] .shot__img--dark  { display: block; }
+
+.shots__cap {
+  margin: 12px 4px 0;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  min-height: 1.4em;
 }
 
-.batt { margin-top: 14px; }
-.batt__label {
-  display: flex; justify-content: space-between;
-  font-size: 12.5px; color: var(--ink-2); margin-bottom: 6px;
-}
-.batt__track { height: 6px; background: var(--panel); border-radius: 999px; overflow: hidden; }
-.batt__fill { height: 100%; width: 72%; background: var(--accent); border-radius: 999px; }
-
-/* The "what it sends" strip: a dead-flat line, which is the whole product. */
-.wave {
-  margin-top: 16px;
-  background: var(--paper);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 14px 18px 12px;
-  box-shadow: var(--shadow-sm);
-}
-.wave__head {
-  display: flex; justify-content: space-between; align-items: baseline;
-  font-size: 12px; color: var(--ink-3);
-  letter-spacing: .04em; text-transform: uppercase; font-weight: 600;
-}
-/* Reading, not label: keep the "dB" cased correctly. */
-.wave__head .val { text-transform: none; letter-spacing: 0; font-variant-numeric: tabular-nums; }
-.wave svg { width: 100%; height: 34px; margin-top: 4px; display: block; }
-.wave__line { stroke: var(--accent); stroke-width: 2; fill: none; stroke-linecap: round; }
-.wave__axis { stroke: var(--line); stroke-width: 1; stroke-dasharray: 3 4; }
-
-/* Taskbar strip along the bottom, to place the icon in context. */
-.taskbar {
-  margin-top: 16px;
+.shots__bar {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  gap: 14px;
-  background: var(--paper);
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 10px;
+  padding: 0 4px;
+}
+
+.shots__dots { display: flex; align-items: center; gap: 7px; }
+
+.shots__dot {
+  width: 7px; height: 7px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: var(--ink-3);
+  opacity: .4;
+  cursor: pointer;
+  transition: opacity .2s ease, width .2s ease, background-color .2s ease;
+}
+.shots__dot:hover { opacity: .75; }
+.shots__dot.is-on { width: 20px; opacity: 1; background: var(--accent); }
+
+.shots__arrows { display: flex; gap: 6px; }
+
+.shots__arrow {
+  display: grid;
+  place-items: center;
+  width: 28px; height: 28px;
+  padding: 0;
   border: 1px solid var(--line);
-  border-radius: 999px;
-  padding: 8px 16px;
-  box-shadow: var(--shadow-sm);
+  border-radius: 8px;
+  background: var(--paper);
+  color: var(--ink-2);
+  cursor: pointer;
+  transition: color .15s ease, border-color .15s ease;
 }
-.taskbar__icons { display: flex; align-items: center; gap: 13px; opacity: .45; }
-.taskbar__icons svg { width: 15px; height: 15px; }
-.taskbar img { width: 19px; height: 19px; border-radius: 5px; }
-.taskbar__clock { font-size: 11.5px; color: var(--ink-3); font-variant-numeric: tabular-nums; }
-.taskbar__pin {
-  display: inline-flex; align-items: center; gap: 7px;
-  padding: 3px 9px 3px 4px;
-  border-radius: 999px;
-  background: var(--accent-tint);
-  border: 1px solid color-mix(in srgb, var(--accent) 22%, transparent);
+.shots__arrow:hover { color: var(--ink); border-color: var(--ink-3); }
+.shots__arrow svg { width: 15px; height: 15px; }
+
+.shots__dot:focus-visible,
+.shots__arrow:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* A carousel that moves on its own is a liability for anyone who asked the
+   system not to animate things. */
+@media (prefers-reduced-motion: reduce) {
+  .shot { transition: none; }
 }
-.taskbar__pin span { font-size: 11.5px; font-weight: 600; color: var(--accent-deep); }
 
 /* ------------------------------------------------------------ problem ---- */
 

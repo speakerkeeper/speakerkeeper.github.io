@@ -109,47 +109,50 @@
       </div>
     </div>
 
-    <!-- What the thing actually looks like in use: the tray tooltip. -->
+    <!-- What it actually looks like, in the order you meet it. Two images per
+         slide because the shots are theme-specific and so is the page; CSS picks
+         one, the same way it picks every other colour here. -->
     <div class="hero__visual">
-      <div class="tray">
-
-        <div class="tray__card">
-          <div class="tray__row">
-            <img src="assets/logo-256.png" alt="" width="34" height="34">
-            <div>
-              <div class="tray__name">JBL Flip 6</div>
-              <div class="tray__state"><i class="dot"></i> Keeping awake</div>
-            </div>
-          </div>
-          <div class="batt">
-            <div class="batt__label"><span>Speaker battery</span><span>72%</span></div>
-            <div class="batt__track"><div class="batt__fill"></div></div>
-          </div>
+      <div class="shots" id="shots" aria-roledescription="carousel" aria-label="Speaker Keeper screenshots">
+        <div class="shots__stage">
+          <figure class="shot is-on" data-cap="One click opens the panel">
+            <img class="shot__img shot__img--light" src="assets/shots/panel-light.png" alt="The Speaker Keeper panel: the connected speaker, a switch to keep it awake, and its battery.">
+            <img class="shot__img shot__img--dark" src="assets/shots/panel-dark.png" alt="" aria-hidden="true">
+          </figure>
+          <figure class="shot" data-cap="Choose which speakers to keep awake">
+            <img class="shot__img shot__img--light" src="assets/shots/speakers-light.png" alt="The Speakers page, listing the Bluetooth speakers Speaker Keeper knows about, each with its own switch." loading="lazy">
+            <img class="shot__img shot__img--dark" src="assets/shots/speakers-dark.png" alt="" aria-hidden="true" loading="lazy">
+          </figure>
+          <figure class="shot" data-cap="Battery warnings, startup, updates">
+            <img class="shot__img shot__img--light" src="assets/shots/general-light.png" alt="The General page: start with Windows, warn me when the battery is low, and install updates automatically." loading="lazy">
+            <img class="shot__img shot__img--dark" src="assets/shots/general-dark.png" alt="" aria-hidden="true" loading="lazy">
+          </figure>
+          <figure class="shot" data-cap="A live log of everything it does">
+            <img class="shot__img shot__img--light" src="assets/shots/log-light.png" alt="The activity log, showing timestamped lines for every stream start, device change and battery reading." loading="lazy">
+            <img class="shot__img shot__img--dark" src="assets/shots/log-dark.png" alt="" aria-hidden="true" loading="lazy">
+          </figure>
         </div>
 
-        <div class="wave">
-          <div class="wave__head"><span>Audio out</span><span class="val">0.000 dB</span></div>
-          <svg viewBox="0 0 320 34" preserveAspectRatio="none" aria-label="A perfectly flat audio waveform: digital silence." role="img">
-            <line class="wave__axis" x1="0" y1="17" x2="320" y2="17"/>
-            <path class="wave__line" d="M4 17 H316"/>
-          </svg>
-        </div>
+        <p class="shots__cap" aria-live="polite">One click opens the panel</p>
 
-        <div class="taskbar">
-          <div class="taskbar__icons">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><path d="M12 20h.01"/></svg>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5Z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+        <div class="shots__bar">
+          <div class="shots__dots" role="tablist" aria-label="Choose a screenshot">
+            <button class="shots__dot is-on" type="button" role="tab" aria-selected="true" aria-label="One click opens the panel"></button>
+            <button class="shots__dot" type="button" role="tab" aria-selected="false" aria-label="Choose which speakers to keep awake"></button>
+            <button class="shots__dot" type="button" role="tab" aria-selected="false" aria-label="Battery warnings, startup, updates"></button>
+            <button class="shots__dot" type="button" role="tab" aria-selected="false" aria-label="A live log of everything it does"></button>
           </div>
-          <span class="taskbar__pin">
-            <img src="assets/logo-128.png" alt="" width="19" height="19">
-            <span>Awake</span>
-          </span>
-          <span class="taskbar__clock">11:04</span>
+          <div class="shots__arrows">
+            <button class="shots__arrow" type="button" data-step="-1" aria-label="Previous screenshot">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+            </button>
+            <button class="shots__arrow" type="button" data-step="1" aria-label="Next screenshot">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+            </button>
+          </div>
         </div>
-
       </div>
     </div>
-
   </div>
 </header>
 
@@ -383,6 +386,63 @@
 </footer>
 
 <script>
+// Hero carousel. Plain state and a class swap; the fade lives in CSS.
+(function () {
+  var root = document.getElementById('shots');
+  if (!root) return;
+
+  var shots = [].slice.call(root.querySelectorAll('.shot'));
+  var dots  = [].slice.call(root.querySelectorAll('.shots__dot'));
+  var cap   = root.querySelector('.shots__cap');
+  var at    = 0;
+  var timer = null;
+
+  // Someone who asked the system not to animate things did not ask for a panel
+  // that changes under them every few seconds either.
+  var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var DWELL = 5200;
+
+  function show(i) {
+    at = (i + shots.length) % shots.length;
+    shots.forEach(function (s, n) { s.classList.toggle('is-on', n === at); });
+    dots.forEach(function (d, n) {
+      d.classList.toggle('is-on', n === at);
+      d.setAttribute('aria-selected', String(n === at));
+    });
+    cap.textContent = shots[at].dataset.cap;
+  }
+
+  function play()  { if (!still && !timer) timer = setInterval(function () { show(at + 1); }, DWELL); }
+  function pause() { clearInterval(timer); timer = null; }
+
+  // Any deliberate move restarts the dwell, so the slide you just chose gets a
+  // full turn rather than whatever was left of the previous one.
+  function go(i) { show(i); pause(); play(); }
+
+  root.querySelectorAll('.shots__arrow').forEach(function (b) {
+    b.addEventListener('click', function () { go(at + Number(b.dataset.step)); });
+  });
+  dots.forEach(function (d, n) { d.addEventListener('click', function () { go(n); }); });
+
+  root.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowLeft')  { go(at - 1); }
+    if (e.key === 'ArrowRight') { go(at + 1); }
+  });
+
+  root.addEventListener('mouseenter', pause);
+  root.addEventListener('mouseleave', play);
+  root.addEventListener('focusin', pause);
+  root.addEventListener('focusout', play);
+
+  // Nothing to animate for a reader who has scrolled past it, or a background tab.
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) { pause(); } else { play(); }
+  });
+
+  show(0);
+  play();
+})();
+
 // FAQ accordion. Heights are measured rather than transitioned to `auto`,
 // so the open/close animation works without pinning a magic max-height.
 document.querySelectorAll('.faq__item').forEach(function (item) {
