@@ -1,0 +1,517 @@
+/* Speaker Keeper — marketing site
+   ---------------------------------------------------------------------------
+   Colour follows 60/30/10:
+     60  paper        white / near-white bands, the field everything sits on
+     30  ink          near-black type, grey copy, hairlines, panel fills
+     10  accent       Bluetooth blue — CTAs, one headline phrase, live states,
+                      and nothing else. If blue starts showing up in body copy
+                      or section fills, the ratio has slipped.
+   Both themes carry the same three roles, so the ratio survives dark mode. */
+
+:root {
+  --paper:       #ffffff;
+  --paper-2:     #f7f9fc;
+  --panel:       #eef2f8;
+  --line:        #e3e8f0;
+  --ink:         #0b0e14;
+  --ink-2:       #5a6472;
+  --ink-3:       #8b94a3;
+  --accent:      #0f71fa;
+  --accent-deep: #0b4ed6;
+  --accent-tint: #e8f1fe;
+  --shadow-sm:   0 1px 2px rgba(11, 14, 20, .06), 0 1px 3px rgba(11, 14, 20, .04);
+  --shadow-md:   0 4px 12px rgba(11, 14, 20, .06), 0 12px 32px rgba(11, 14, 20, .07);
+  --shadow-lg:   0 8px 24px rgba(11, 14, 20, .08), 0 32px 64px rgba(11, 14, 20, .10);
+  --radius:      14px;
+  --radius-lg:   22px;
+  --maxw:        1120px;
+  --gutter:      24px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper:       #0b0e14;
+    --paper-2:     #0f131b;
+    --panel:       #151a24;
+    --line:        #1f2734;
+    --ink:         #f1f4f9;
+    --ink-2:       #98a3b5;
+    --ink-3:       #6c7789;
+    --accent:      #4b9bff;
+    --accent-deep: #2f7ff0;
+    --accent-tint: #122439;
+    --shadow-sm:   0 1px 2px rgba(0, 0, 0, .4);
+    --shadow-md:   0 4px 12px rgba(0, 0, 0, .35), 0 12px 32px rgba(0, 0, 0, .3);
+    --shadow-lg:   0 8px 24px rgba(0, 0, 0, .4), 0 32px 64px rgba(0, 0, 0, .45);
+  }
+}
+
+:root[data-theme="dark"] {
+  --paper:       #0b0e14;
+  --paper-2:     #0f131b;
+  --panel:       #151a24;
+  --line:        #1f2734;
+  --ink:         #f1f4f9;
+  --ink-2:       #98a3b5;
+  --ink-3:       #6c7789;
+  --accent:      #4b9bff;
+  --accent-deep: #2f7ff0;
+  --accent-tint: #122439;
+  --shadow-sm:   0 1px 2px rgba(0, 0, 0, .4);
+  --shadow-md:   0 4px 12px rgba(0, 0, 0, .35), 0 12px 32px rgba(0, 0, 0, .3);
+  --shadow-lg:   0 8px 24px rgba(0, 0, 0, .4), 0 32px 64px rgba(0, 0, 0, .45);
+}
+
+/* --------------------------------------------------------------- base ---- */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+  font-feature-settings: "cv05" 1, "ss03" 1;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3 {
+  margin: 0;
+  letter-spacing: -0.032em;
+  line-height: 1.06;
+  font-weight: 700;
+}
+
+p { margin: 0; }
+
+a { color: inherit; }
+
+img { max-width: 100%; display: block; }
+
+.wrap {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section { padding-block: clamp(72px, 11vw, 132px); }
+.section--alt { background: var(--paper-2); border-block: 1px solid var(--line); }
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 6px 13px 6px 10px;
+  box-shadow: var(--shadow-sm);
+}
+
+/* The one live accent: a pulsing dot that reads "it is doing something". */
+.dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 55%, transparent);
+  animation: pulse 2.4s ease-out infinite;
+  flex: none;
+}
+
+@keyframes pulse {
+  0%   { box-shadow: 0 0 0 0   color-mix(in srgb, var(--accent) 50%, transparent); }
+  70%  { box-shadow: 0 0 0 7px color-mix(in srgb, var(--accent) 0%,  transparent); }
+  100% { box-shadow: 0 0 0 0   color-mix(in srgb, var(--accent) 0%,  transparent); }
+}
+
+/* Wide enough that a 46px heading lands on two lines, not three; the deck
+   underneath is re-narrowed to a comfortable measure. */
+.section-head { max-width: 660px; margin-bottom: clamp(36px, 5vw, 56px); }
+.section-head h2 { font-size: clamp(30px, 4.4vw, 46px); margin-block: 18px 14px; }
+.section-head p { color: var(--ink-2); font-size: clamp(16px, 1.6vw, 18.5px); max-width: 52ch; }
+
+/* ------------------------------------------------------------ buttons ---- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font: inherit;
+  font-size: 15.5px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  padding: 13px 22px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: transform .16s ease, box-shadow .16s ease, background-color .16s ease, border-color .16s ease;
+}
+
+.btn:active { transform: translateY(1px); }
+
+.btn--primary {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 1px 2px rgba(15, 113, 250, .25), 0 8px 20px -6px rgba(15, 113, 250, .45);
+}
+.btn--primary:hover { background: var(--accent-deep); }
+
+.btn--ghost {
+  background: var(--paper);
+  color: var(--ink);
+  border-color: var(--line);
+  box-shadow: var(--shadow-sm);
+}
+.btn--ghost:hover { border-color: var(--ink-3); }
+
+.btn--lg { padding: 16px 28px; font-size: 16.5px; }
+
+:where(a, button, summary, .faq__q):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* ---------------------------------------------------------------- nav ---- */
+
+.nav {
+  position: sticky;
+  top: 14px;
+  z-index: 50;
+  padding-inline: var(--gutter);
+  margin-top: 14px;
+}
+
+.nav__inner {
+  max-width: var(--maxw);
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 9px 9px 9px 16px;
+  background: color-mix(in srgb, var(--paper) 82%, transparent);
+  backdrop-filter: saturate(180%) blur(14px);
+  -webkit-backdrop-filter: saturate(180%) blur(14px);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  box-shadow: var(--shadow-sm);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+  margin-right: auto;
+  white-space: nowrap;
+}
+.brand img { width: 26px; height: 26px; border-radius: 7px; }
+
+.nav__links { display: flex; align-items: center; gap: 4px; }
+.nav__links a {
+  text-decoration: none;
+  color: var(--ink-2);
+  font-size: 14.5px;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 999px;
+  transition: color .15s ease, background-color .15s ease;
+}
+.nav__links a:hover { color: var(--ink); background: var(--panel); }
+
+@media (max-width: 820px) { .nav__links { display: none; } }
+
+/* Smallest phones: the pill has to hold the wordmark and the CTA on one line. */
+@media (max-width: 380px) {
+  .brand { font-size: 15px; }
+  .brand img { width: 24px; height: 24px; }
+  .nav__inner { padding-left: 13px; }
+  .nav__inner .btn { padding: 11px 16px; font-size: 14.5px; }
+}
+
+/* --------------------------------------------------------------- hero ---- */
+
+.hero { padding-block: clamp(44px, 5.5vw, 74px) clamp(64px, 9vw, 110px); }
+
+/* Text gets the wider column: the headline is three fixed lines and the longest
+   of them has to fit without wrapping, or the fold overflows. */
+.hero__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.12fr) minmax(0, .88fr);
+  gap: clamp(32px, 4vw, 56px);
+  align-items: center;
+}
+
+.hero h1 {
+  font-size: clamp(30px, 3.7vw, 46px);
+  margin-block: 20px 18px;
+  text-wrap: balance;
+}
+
+/* The single chromatic emphasis in the whole fold. */
+.hero h1 em { font-style: normal; color: var(--accent); }
+
+.hero__sub {
+  color: var(--ink-2);
+  font-size: clamp(17px, 1.8vw, 19.5px);
+  max-width: 44ch;
+  line-height: 1.55;
+}
+
+.hero__cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+
+.hero__meta {
+  margin-top: 22px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+  font-size: 13.5px;
+  color: var(--ink-3);
+}
+.hero__meta span { display: inline-flex; align-items: center; gap: 7px; }
+.hero__meta svg { width: 14px; height: 14px; flex: none; }
+
+@media (max-width: 900px) {
+  .hero__grid { grid-template-columns: 1fr; }
+  .hero__visual { order: 2; }
+}
+
+/* The headline's hard breaks are a desktop composition. Narrower than this they
+   set a min-content width wider than the screen, which pushes the whole
+   document sideways — so below the breakpoint the line wraps on its own. */
+@media (max-width: 700px) {
+  :root { --gutter: 18px; }
+  .hero h1 br { display: none; }
+  .hero h1 em { display: inline; }
+}
+
+/* ------------------------------------------------ hero visual: the tray -- */
+
+.tray {
+  position: relative;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  box-shadow: var(--shadow-lg);
+}
+
+/* Tooltip card — what you actually see when you hover the tray icon. */
+.tray__card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  box-shadow: var(--shadow-md);
+}
+
+.tray__row { display: flex; align-items: center; gap: 12px; }
+.tray__row img { width: 34px; height: 34px; border-radius: 9px; flex: none; }
+.tray__name { font-weight: 650; font-size: 15px; letter-spacing: -0.01em; }
+.tray__state {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: 13px; color: var(--ink-2); margin-top: 2px;
+}
+
+.batt { margin-top: 14px; }
+.batt__label {
+  display: flex; justify-content: space-between;
+  font-size: 12.5px; color: var(--ink-2); margin-bottom: 6px;
+}
+.batt__track { height: 6px; background: var(--panel); border-radius: 999px; overflow: hidden; }
+.batt__fill { height: 100%; width: 72%; background: var(--accent); border-radius: 999px; }
+
+/* The "what it sends" strip — a dead-flat line, which is the whole product. */
+.wave {
+  margin-top: 16px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 14px 18px 12px;
+  box-shadow: var(--shadow-sm);
+}
+.wave__head {
+  display: flex; justify-content: space-between; align-items: baseline;
+  font-size: 12px; color: var(--ink-3);
+  letter-spacing: .04em; text-transform: uppercase; font-weight: 600;
+}
+/* Reading, not label — keep the "dB" cased correctly. */
+.wave__head .val { text-transform: none; letter-spacing: 0; font-variant-numeric: tabular-nums; }
+.wave svg { width: 100%; height: 34px; margin-top: 4px; display: block; }
+.wave__line { stroke: var(--accent); stroke-width: 2; fill: none; stroke-linecap: round; }
+.wave__axis { stroke: var(--line); stroke-width: 1; stroke-dasharray: 3 4; }
+
+/* Taskbar strip along the bottom, to place the icon in context. */
+.taskbar {
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 14px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 8px 16px;
+  box-shadow: var(--shadow-sm);
+}
+.taskbar__icons { display: flex; align-items: center; gap: 13px; opacity: .45; }
+.taskbar__icons svg { width: 15px; height: 15px; }
+.taskbar img { width: 19px; height: 19px; border-radius: 5px; }
+.taskbar__clock { font-size: 11.5px; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+.taskbar__pin {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 3px 9px 3px 4px;
+  border-radius: 999px;
+  background: var(--accent-tint);
+  border: 1px solid color-mix(in srgb, var(--accent) 22%, transparent);
+}
+.taskbar__pin span { font-size: 11.5px; font-weight: 600; color: var(--accent-deep); }
+
+/* ------------------------------------------------------------ problem ---- */
+
+.cards { display: grid; gap: 18px; grid-template-columns: repeat(3, 1fr); }
+@media (max-width: 860px) { .cards { grid-template-columns: 1fr; } }
+
+.card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 26px 24px;
+  box-shadow: var(--shadow-sm);
+}
+.card h3 { font-size: 18px; letter-spacing: -0.02em; margin-bottom: 9px; }
+.card p { color: var(--ink-2); font-size: 15.5px; line-height: 1.58; }
+
+.card__num {
+  font-size: 12px; font-weight: 700; letter-spacing: .08em;
+  color: var(--ink-3); display: block; margin-bottom: 14px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------------------------------------------------------- how it works - */
+
+.steps { display: grid; gap: 20px; grid-template-columns: repeat(3, 1fr); counter-reset: step; }
+@media (max-width: 860px) { .steps { grid-template-columns: 1fr; } }
+
+.step { padding-top: 22px; border-top: 2px solid var(--line); }
+.step:first-child { border-top-color: var(--accent); }
+.step h3 { font-size: 17px; letter-spacing: -0.02em; margin-bottom: 8px; }
+.step p { color: var(--ink-2); font-size: 15.5px; }
+.step__k {
+  font-size: 12px; font-weight: 700; color: var(--ink-3);
+  letter-spacing: .08em; display: block; margin-bottom: 10px;
+}
+.step:first-child .step__k { color: var(--accent); }
+
+/* ----------------------------------------------------------- features ---- */
+
+.features { display: grid; gap: 1px; grid-template-columns: repeat(3, 1fr);
+  background: var(--line); border: 1px solid var(--line); border-radius: var(--radius-lg); overflow: hidden; }
+@media (max-width: 900px) { .features { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 620px) { .features { grid-template-columns: 1fr; } }
+
+.feature { background: var(--paper); padding: 30px 26px; }
+.feature__icon {
+  width: 34px; height: 34px; margin-bottom: 16px;
+  display: grid; place-items: center;
+  border-radius: 10px;
+  background: var(--accent-tint);
+  color: var(--accent);
+}
+.feature__icon svg { width: 18px; height: 18px; }
+.feature h3 { font-size: 16.5px; letter-spacing: -0.02em; margin-bottom: 8px; }
+.feature p { color: var(--ink-2); font-size: 15px; line-height: 1.56; }
+
+/* ---------------------------------------------------------------- faq ---- */
+
+.faq { max-width: 760px; }
+.faq__item { border-bottom: 1px solid var(--line); }
+.faq__item:first-child { border-top: 1px solid var(--line); }
+
+.faq__q {
+  width: 100%;
+  display: flex; align-items: center; justify-content: space-between; gap: 20px;
+  background: none; border: 0; cursor: pointer;
+  font: inherit; font-size: 17px; font-weight: 600; letter-spacing: -0.015em;
+  color: var(--ink);
+  text-align: left;
+  padding: 22px 2px;
+}
+.faq__q:hover { color: var(--accent); }
+
+.faq__sign { position: relative; width: 13px; height: 13px; flex: none; }
+.faq__sign::before, .faq__sign::after {
+  content: ""; position: absolute; background: var(--ink-3); border-radius: 2px;
+  transition: transform .22s ease, background-color .22s ease;
+}
+.faq__sign::before { inset: 5.5px 0; height: 2px; }
+.faq__sign::after  { inset: 0 5.5px; width: 2px; }
+.faq__item[data-open="true"] .faq__sign::after { transform: rotate(90deg); }
+.faq__item[data-open="true"] .faq__sign::before { background: var(--accent); }
+.faq__item[data-open="true"] .faq__sign::after  { background: var(--accent); }
+
+.faq__a { overflow: hidden; height: 0; transition: height .26s ease; }
+.faq__a p { color: var(--ink-2); font-size: 16px; padding-bottom: 24px; max-width: 62ch; }
+.faq__a p + p { padding-top: 14px; }
+
+/* ----------------------------------------------------------- download ---- */
+
+.download { text-align: center; }
+.download h2 { font-size: clamp(32px, 5vw, 52px); margin-bottom: 18px; }
+.download p { color: var(--ink-2); font-size: 18px; max-width: 48ch; margin-inline: auto; }
+.download__cta { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+.download__note { margin-top: 20px; font-size: 13.5px; color: var(--ink-3); }
+
+.smartscreen {
+  margin: 44px auto 0;
+  max-width: 620px;
+  text-align: left;
+  display: flex; gap: 14px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  box-shadow: var(--shadow-sm);
+}
+.smartscreen svg { width: 18px; height: 18px; color: var(--ink-3); flex: none; margin-top: 3px; }
+.smartscreen p { font-size: 14.5px; color: var(--ink-2); margin: 0; max-width: none; }
+.smartscreen strong { color: var(--ink); font-weight: 650; }
+
+/* ------------------------------------------------------------- footer ---- */
+
+.footer { border-top: 1px solid var(--line); padding-block: 40px 52px; }
+.footer__inner {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px;
+  justify-content: space-between;
+}
+.footer__links { display: flex; flex-wrap: wrap; gap: 20px; }
+.footer a { color: var(--ink-2); text-decoration: none; font-size: 14.5px; }
+.footer a:hover { color: var(--accent); }
+.footer__copy { font-size: 14px; color: var(--ink-3); }
